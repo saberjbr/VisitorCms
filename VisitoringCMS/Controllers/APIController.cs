@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using VisitoringCMS.Models;
 using Newtonsoft.Json;
+
 namespace VisitoringCMS.Controllers
 {
     public class APIController : Controller
@@ -30,11 +31,30 @@ namespace VisitoringCMS.Controllers
             return Json(db.Product.ToList(), JsonRequestBehavior.AllowGet);
         }
 
-        [HttpPost]
-        public JsonResult SubmitVisit(Visitor v,agent agnt)
+        public JsonResult SubmitVisit(string Visitor_id,string Agent_id,string Lat,string Lng)
         {
-            return null;
+            if (Visitor_id != null && Agent_id != null && Lat != null && Lng != null)
+            {
+                var visit = new visit();
+                visit.Visitor_id = Convert.ToInt32(Visitor_id);
+                visit.Agent_id = Convert.ToInt32(Agent_id);
+                var agent = db.agent.Where(x => x.Id == visit.Agent_id).FirstOrDefault();
+                if (distance(Convert.ToDouble(agent.Lat), Convert.ToDouble(agent.Lng), Convert.ToDouble(Lat), Convert.ToDouble(Lng), 'M') < 1000)
+                {
+                    visit.Time = DateTime.Now;
+                    db.visit.Add(visit);
+                    db.SaveChanges();
+                    return Json(new { message = "submited" },JsonRequestBehavior.AllowGet);
+
+                }
+                else
+                    return Json(new { message = "error" },JsonRequestBehavior.AllowGet);
+
+            }
+            return Json(new { message = "error" }, JsonRequestBehavior.AllowGet);
         }
+
+
         public JsonResult SubmitOrder(Visitor v,agent agnt,string order)
         {
             return null;
@@ -42,6 +62,33 @@ namespace VisitoringCMS.Controllers
         public JsonResult Login(string username,string password)
         {
             return Json(db.Visitor.Where(x=>x.Username==username&&x.Password==password).Select(x=>new {Visitor_Id=x.Id}).FirstOrDefault(),JsonRequestBehavior.AllowGet);
+        }
+        private double distance(double lat1, double lon1, double lat2, double lon2, char unit)
+        {
+            double theta = lon1 - lon2;
+            double dist = Math.Sin(deg2rad(lat1)) * Math.Sin(deg2rad(lat2)) + Math.Cos(deg2rad(lat1)) * Math.Cos(deg2rad(lat2)) * Math.Cos(deg2rad(theta));
+            dist = Math.Acos(dist);
+            dist = rad2deg(dist);
+            dist = dist * 60 * 1.1515;
+            if (unit == 'K')
+            {
+                dist = dist * 1.609344;
+            }
+            else if (unit == 'N')
+            {
+                dist = dist * 0.8684;
+            }
+            return (dist);
+        }
+
+        private double deg2rad(double deg)
+        {
+            return (deg * Math.PI / 180.0);
+        }
+
+        private double rad2deg(double rad)
+        {
+            return (rad / Math.PI * 180.0);
         }
 
     }
