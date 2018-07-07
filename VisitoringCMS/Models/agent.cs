@@ -18,6 +18,7 @@ namespace VisitoringCMS.Models
         public agent()
         {
             this.visit = new HashSet<visit>();
+            this.order = new HashSet<order>();
         }
     
         public int Id { get; set; }
@@ -30,5 +31,7 @@ namespace VisitoringCMS.Models
         public virtual Visitor Visitor { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<visit> visit { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<order> order { get; set; }
     }
 }

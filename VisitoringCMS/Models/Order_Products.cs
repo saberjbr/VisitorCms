@@ -17,6 +17,7 @@ namespace VisitoringCMS.Models
         public int Id { get; set; }
         public int Product_id { get; set; }
         public int Order_id { get; set; }
+        public Nullable<int> Count { get; set; }
     
         public virtual order order { get; set; }
         public virtual Product Product { get; set; }

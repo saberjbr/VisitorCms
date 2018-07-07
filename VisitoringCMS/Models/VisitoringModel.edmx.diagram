@@ -17,6 +17,7 @@
         <AssociationConnector Association="VisitoringModel.FK__Order_Pro__Order__1BFD2C07" ManuallyRouted="false" />
         <AssociationConnector Association="VisitoringModel.FK__Order_Pro__Produ__1CF15040" ManuallyRouted="false" />
         <AssociationConnector Association="VisitoringModel.FK__visit__Visitor_i__1ED998B2" ManuallyRouted="false" />
+        <AssociationConnector Association="VisitoringModel.FK__order__Agent_Id__21B6055D" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

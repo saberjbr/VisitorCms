@@ -24,9 +24,11 @@ namespace VisitoringCMS.Models
         public int Visitor_id { get; set; }
         public Nullable<System.DateTime> Time { get; set; }
         public string info { get; set; }
+        public int Agent_Id { get; set; }
     
         public virtual Visitor Visitor { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Order_Products> Order_Products { get; set; }
+        public virtual agent agent { get; set; }
     }
 }

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="VisitoringModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="VisitoringModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="agent">
           <Key>
             <PropertyRef Name="Id" />
@@ -24,6 +24,7 @@
           <Property Name="Visitor_id" Type="int" Nullable="false" />
           <Property Name="Time" Type="datetime" />
           <Property Name="info" Type="nvarchar" MaxLength="150" />
+          <Property Name="Agent_Id" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Order_Products">
           <Key>
@@ -32,6 +33,7 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Product_id" Type="int" Nullable="false" />
           <Property Name="Order_id" Type="int" Nullable="false" />
+          <Property Name="Count" Type="int" />
         </EntityType>
         <EntityType Name="Product">
           <Key>
@@ -77,6 +79,18 @@
             </Principal>
             <Dependent Role="agent">
               <PropertyRef Name="VisitorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__order__Agent_Id__21B6055D">
+          <End Role="agent" Type="Self.agent" Multiplicity="1" />
+          <End Role="order" Type="Self.order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="agent">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="order">
+              <PropertyRef Name="Agent_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -151,6 +165,10 @@
             <End Role="Visitor" EntitySet="Visitor" />
             <End Role="agent" EntitySet="agent" />
           </AssociationSet>
+          <AssociationSet Name="FK__order__Agent_Id__21B6055D" Association="Self.FK__order__Agent_Id__21B6055D">
+            <End Role="agent" EntitySet="agent" />
+            <End Role="order" EntitySet="order" />
+          </AssociationSet>
           <AssociationSet Name="FK__order__Visitor_i__1B0907CE" Association="Self.FK__order__Visitor_i__1B0907CE">
             <End Role="Visitor" EntitySet="Visitor" />
             <End Role="order" EntitySet="order" />
@@ -172,8 +190,7 @@
             <End Role="visit" EntitySet="visit" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="VisitoringModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -189,6 +206,7 @@
           <Property Name="VisitorID" Type="Int32" />
           <NavigationProperty Name="Visitor" Relationship="Self.FK__agent__VisitorID__1A14E395" FromRole="agent" ToRole="Visitor" />
           <NavigationProperty Name="visit" Relationship="Self.FK__visit__Agent_id__1DE57479" FromRole="agent" ToRole="visit" />
+          <NavigationProperty Name="order" Relationship="VisitoringModel.FK__order__Agent_Id__21B6055D" FromRole="agent" ToRole="order" />
         </EntityType>
         <EntityType Name="order">
           <Key>
@@ -200,6 +218,8 @@
           <Property Name="info" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Visitor" Relationship="Self.FK__order__Visitor_i__1B0907CE" FromRole="order" ToRole="Visitor" />
           <NavigationProperty Name="Order_Products" Relationship="Self.FK__Order_Pro__Order__1BFD2C07" FromRole="order" ToRole="Order_Products" />
+          <Property Name="Agent_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="agent" Relationship="VisitoringModel.FK__order__Agent_Id__21B6055D" FromRole="order" ToRole="agent" />
         </EntityType>
         <EntityType Name="Order_Products">
           <Key>
@@ -210,6 +230,7 @@
           <Property Name="Order_id" Type="Int32" Nullable="false" />
           <NavigationProperty Name="order" Relationship="Self.FK__Order_Pro__Order__1BFD2C07" FromRole="Order_Products" ToRole="order" />
           <NavigationProperty Name="Product" Relationship="Self.FK__Order_Pro__Produ__1CF15040" FromRole="Order_Products" ToRole="Product" />
+          <Property Name="Count" Type="Int32" />
         </EntityType>
         <EntityType Name="Product">
           <Key>
@@ -355,7 +376,23 @@
             <End Role="Visitor" EntitySet="Visitor" />
             <End Role="visit" EntitySet="visit" />
           </AssociationSet>
+          <AssociationSet Name="FK__order__Agent_Id__21B6055D" Association="VisitoringModel.FK__order__Agent_Id__21B6055D">
+            <End Role="agent" EntitySet="agent" />
+            <End Role="order" EntitySet="order" />
+          </AssociationSet>
         </EntityContainer>
+        <Association Name="FK__order__Agent_Id__21B6055D">
+          <End Type="VisitoringModel.agent" Role="agent" Multiplicity="1" />
+          <End Type="VisitoringModel.order" Role="order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="agent">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="order">
+              <PropertyRef Name="Agent_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -377,6 +414,7 @@
           <EntitySetMapping Name="order">
             <EntityTypeMapping TypeName="VisitoringModel.order">
               <MappingFragment StoreEntitySet="order">
+                <ScalarProperty Name="Agent_Id" ColumnName="Agent_Id" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Visitor_id" ColumnName="Visitor_id" />
                 <ScalarProperty Name="Time" ColumnName="Time" />
@@ -387,6 +425,7 @@
           <EntitySetMapping Name="Order_Products">
             <EntityTypeMapping TypeName="VisitoringModel.Order_Products">
               <MappingFragment StoreEntitySet="Order_Products">
+                <ScalarProperty Name="Count" ColumnName="Count" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Product_id" ColumnName="Product_id" />
                 <ScalarProperty Name="Order_id" ColumnName="Order_id" />
