@@ -28,7 +28,7 @@ namespace VisitoringCMS.Controllers
         }
         public JsonResult GetProducts()
         {
-            return Json(db.Product.ToList(), JsonRequestBehavior.AllowGet);
+            return Json(db.Product.Select(x=>new {Id=x.Id,Name=x.Name,In_stock=x.In_stock,Price=x.Price,Sale_price=x.Sale_Price, Description = x.Description,Picture=x.Picture.ToString() }).ToList(), JsonRequestBehavior.AllowGet);
         }
         public JsonResult SubmitVisit(string Visitor_id, string Agent_id, string Lat, string Lng)
         {
