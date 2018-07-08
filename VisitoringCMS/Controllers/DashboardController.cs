@@ -38,7 +38,8 @@ namespace VisitoringCMS.Controllers
             visitor.Username = user_name;
             visitor.Email = email;
             visitor.Password = password;
-            visitor.Picture = Convert.ToString(new BinaryReader(photo.InputStream).ReadBytes(photo.ContentLength));
+
+            visitor.Picture = ImageToBase64(photo);
             db.Visitor.Add(visitor);
             db.SaveChanges();
             return RedirectToAction("Index");
@@ -77,7 +78,7 @@ namespace VisitoringCMS.Controllers
 
             }
 
-            product.Picture = Convert.ToString(new System.IO.BinaryReader(photo.InputStream).ReadBytes(photo.ContentLength));
+            product.Picture = ImageToBase64(photo);
             db.Product.Add(product);
             db.SaveChanges();
             return RedirectToAction("Index");
@@ -105,6 +106,16 @@ namespace VisitoringCMS.Controllers
         {
             ViewBag.Visitors = db.Visitor.ToList();
             return View();
+        }
+        public string ImageToBase64(HttpPostedFileBase cvFile)
+        {
+            byte[] fileInBytes = new byte[cvFile.ContentLength];
+            using (BinaryReader theReader = new BinaryReader(cvFile.InputStream))
+            {
+                fileInBytes = theReader.ReadBytes(cvFile.ContentLength);
+            }
+            string fileAsString = Convert.ToBase64String(fileInBytes);
+            return ("data:image/jpeg;base64,"+fileAsString);
         }
     }
 }
