@@ -111,6 +111,45 @@
       <DependentUpon>VisitoringModel.edmx</DependentUpon>
       <LastGenOutput>VisitoringModel.cs</LastGenOutput>
     </Content>
+    <Content Include="Resources\css\font-awesome\font-awesome.min.css" />
+    <Content Include="Resources\css\ltr\bootstrap.min.css" />
+    <Content Include="Resources\css\ltr\sb-admin-2.css" />
+    <Content Include="Resources\css\plugins\dataTables.bootstrap.css" />
+    <Content Include="Resources\css\plugins\metisMenu\metisMenu.css" />
+    <Content Include="Resources\css\plugins\metisMenu\metisMenu.min.css" />
+    <Content Include="Resources\css\plugins\morris.css" />
+    <Content Include="Resources\css\plugins\social-buttons.css" />
+    <Content Include="Resources\css\plugins\timeline.css" />
+    <Content Include="Resources\css\rtl\bootstrap.min.css" />
+    <Content Include="Resources\css\rtl\bootstrap.rtl.css" />
+    <Content Include="Resources\css\rtl\sb-admin-2.css" />
+    <Content Include="Resources\extras\image-samples\buttons.png" />
+    <Content Include="Resources\extras\image-samples\tables.png" />
+    <Content Include="Resources\extras\image-samples\typography.png" />
+    <Content Include="Resources\fonts\fontawesome-webfont-v=4.2.0.svg" />
+    <Content Include="Resources\fonts\fontawesome-webfont.svg" />
+    <Content Include="Resources\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Resources\images\bootstrap\datatables\sort_asc.png" />
+    <Content Include="Resources\images\bootstrap\datatables\sort_asc_disabled.png" />
+    <Content Include="Resources\images\bootstrap\datatables\sort_both.png" />
+    <Content Include="Resources\images\bootstrap\datatables\sort_desc.png" />
+    <Content Include="Resources\images\bootstrap\datatables\sort_desc_disabled.png" />
+    <Content Include="Resources\js\bootstrap.min.js" />
+    <Content Include="Resources\js\bootstrap\bootstrap.min.js" />
+    <Content Include="Resources\js\bootstrap\dataTables.bootstrap.min.js" />
+    <Content Include="Resources\js\flot\excanvas.min.js" />
+    <Content Include="Resources\js\flot\jquery.flot.js" />
+    <Content Include="Resources\js\flot\jquery.flot.pie.js" />
+    <Content Include="Resources\js\flot\jquery.flot.resize.js" />
+    <Content Include="Resources\js\flot\jquery.flot.time.js" />
+    <Content Include="Resources\js\flot\jquery.flot.tooltip.min.js" />
+    <Content Include="Resources\js\jquery-1.11.0.js" />
+    <Content Include="Resources\js\jquery\jquery.dataTables.min.js" />
+    <Content Include="Resources\js\jquery\jquery.min.js" />
+    <Content Include="Resources\js\metisMenu\metisMenu.min.js" />
+    <Content Include="Resources\js\morris\morris.min.js" />
+    <Content Include="Resources\js\raphael\raphael.min.js" />
+    <Content Include="Resources\js\sb-admin-2.js" />
     <Content Include="Scripts\affix.js" />
     <Content Include="Scripts\alert.js" />
     <Content Include="Scripts\bootstrap-rtl.js" />
@@ -126,6 +165,19 @@
       <DependentUpon>VisitoringModel.edmx</DependentUpon>
     </Content>
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
+    <Content Include="Resources\fonts\fontawesome-webfont-.eot" />
+    <Content Include="Resources\fonts\fontawesome-webfont-v=4.2.0.eot" />
+    <Content Include="Resources\fonts\fontawesome-webfont-v=4.2.0.ttf" />
+    <Content Include="Resources\fonts\fontawesome-webfont-v=4.2.0.woff" />
+    <Content Include="Resources\fonts\fontawesome-webfont.eot" />
+    <Content Include="Resources\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Resources\fonts\fontawesome-webfont.woff" />
+    <Content Include="Resources\fonts\FontAwesome.otf" />
+    <Content Include="Resources\fonts\glyphicons-halflings-regular-.eot" />
+    <Content Include="Resources\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Resources\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Resources\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Resources\fonts\glyphicons-halflings-regular.woff2" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -195,6 +247,7 @@
     <Content Include="Views\Dashboard\Index.cshtml" />
     <Content Include="Views\Dashboard\CreateVisitor.cshtml" />
     <Content Include="Views\Dashboard\CreateAgent.cshtml" />
+    <Content Include="Views\Dashboard\CreateProduct.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
