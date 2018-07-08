@@ -14,6 +14,10 @@ namespace VisitoringCMS.Controllers
         // GET: Dashboard
         public ActionResult Index()
         {
+            ViewBag.Visitors = db.Visitor.Count();
+            ViewBag.Orders = db.order.Count();
+            ViewBag.Products = db.Product.Count();
+            ViewBag.Agents = db.agent.Count();
             return View();
         }
 
