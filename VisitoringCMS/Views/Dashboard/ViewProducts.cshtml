@@ -2,6 +2,13 @@
 @{
     Layout = null;
 }
+
+<!DOCTYPE html>
+
+
+@{
+    Layout = null;
+}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -70,13 +77,13 @@
                             <!-- /input-group -->
                         </li>
                         <li>
-                            <a class="active" href="/Dashboard/Index"><i class="fa fa-dashboard fa-fw"></i> داشبورد</a>
+                            <a class="" href="/Dashboard/Index"><i class="fa fa-dashboard fa-fw"></i> داشبورد</a>
                         </li>
                         <li>
                             <a class="" href="/Dashboard/CreateProduct"><i class="fa fa-shopping-cart fa-fw"></i> افزودن محصول</a>
                         </li>
                         <li>
-                            <a class="" href="/Dashboard/ViewProducts"><i class="fa fa-shopping-cart fa-fw"></i> مشاهده محصولات</a>
+                            <a class="active" href="/Dashboard/ViewProducts"><i class="fa fa-shopping-cart fa-fw"></i> مشاهده محصولات</a>
                         </li>
                         <li>
                             <a class=" " href="/Dashboard/CreateVisitor"><i class="fa fa-graduation-cap fa-fw"></i> افزودن ویزیتور</a>
@@ -84,14 +91,13 @@
 
                         <li>
                             <a class="" href="/Dashboard/ViewVisitors"><i class="fa fa-graduation-cap fa-fw"></i> مشاهده ویزیتور ها</a>
-                        </li>
+                        </li>   
                         <li>
                             <a class=" " href="/Dashboard/CreateAgent"><i class="fa fa-shopping-cart fa-fw"></i> افزودن فروشنده</a>
                         </li>
                         <li>
                             <a class=" " href="/Dashboard/ViewAgents"><i class="fa fa-shopping-cart fa-fw"></i> مشاهده فروشندگان</a>
                         </li>
-
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->
@@ -100,101 +106,74 @@
         </nav>
 
         <div id="page-wrapper">
-            <div class="row">
-                <div class="col-lg-12">
-                    <h1 class="page-header">داشبورد</h1>
+            <br />
+            <br />
+            <!-- /.col-lg-6 -->
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        لیست محصولات
+                    </div>
+                    <!-- /.panel-heading -->
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>تصویر محصول</th>
+                                        <th>نام محصول</th>
+                                        <th>قیمت محصول</th>
+                                        <th>قیمت فروش ویژه</th>
+                                        <th>توضیحات محصول</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var p in ViewBag.Products)
+                                    {
+                                        <tr>
+                                            <td>#</td>
+                                            <td><img src="@p.Picture" style="width:150px;height:150px"></td>
+                                            <td style="vertical-align:middle">@p.Name</td>
+                                            <td style="vertical-align:middle">@p.Price</td>
+                                            <td style="vertical-align:middle">@p.Sale_Price</td>
+                                            <td style="vertical-align:middle">@p.Description</td>
+                                        </tr>
+                                    }
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- /.table-responsive -->
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
                 </div>
-                <!-- /.col-lg-12 -->
+                <!-- /.col-lg-6 -->
             </div>
-            <!-- /.row -->
-            <div class="row">
-                <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-4">
-                                    <i class="fa fa-comments fa-5x"></i>
-                                </div>
-                                <div class="col-xs-8 text-right">
-                                    <div class="huge">@ViewBag.Visitors</div>
-                                    <div>ویزیتور</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-green">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-4">
-                                    <i class="fa fa-tasks fa-5x"></i>
-                                </div>
-                                <div class="col-xs-8 text-right">
-                                    <div class="huge">@ViewBag.Products</div>
-                                    <div>محصول</div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-yellow">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-4">
-                                    <i class="fa fa-shopping-cart fa-5x"></i>
-                                </div>
-                                <div class="col-xs-8 text-right">
-                                    <div class="huge">@ViewBag.Orders</div>
-                                    <div>سفارش</div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-red">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-4">
-                                    <i class="fa fa-support fa-5x"></i>
-                                </div>
-                                <div class="col-xs-8 text-right">
-                                    <div class="huge">@ViewBag.Agents</div>
-                                    <div>فروشنده</div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
+            <!-- /#page-wrapper -->
 
         </div>
-        <!-- /#page-wrapper -->
+        <!-- /#wrapper -->
+        <!-- jQuery Version 1.11.0 -->
+        <script src="~/Resources/js/jquery-1.11.0.js"></script>
 
-    </div>
-    <!-- /#wrapper -->
-    <!-- jQuery Version 1.11.0 -->
-    <script src="~/Resources/js/jquery-1.11.0.js"></script>
+        <!-- Bootstrap Core JavaScript -->
+        <script src="~/Resources/js/bootstrap.min.js"></script>
 
-    <!-- Bootstrap Core JavaScript -->
-    <script src="~/Resources/js/bootstrap.min.js"></script>
+        <!-- Metis Menu Plugin JavaScript -->
+        <script src="~/Resources/js/metisMenu/metisMenu.min.js"></script>
 
-    <!-- Metis Menu Plugin JavaScript -->
-    <script src="~/Resources/js/metisMenu/metisMenu.min.js"></script>
+        <!-- Morris Charts JavaScript -->
+        <script src="~/Resources/js/raphael/raphael.min.js"></script>
+        <script src="~/Resources/js/morris/morris.min.js"></script>
 
-    <!-- Morris Charts JavaScript -->
-    <script src="~/Resources/js/raphael/raphael.min.js"></script>
-    <script src="~/Resources/js/morris/morris.min.js"></script>
+        <!-- Custom Theme JavaScript -->
+        <script src="~/Resources/js/sb-admin-2.js"></script>
 
-    <!-- Custom Theme JavaScript -->
-    <script src="~/Resources/js/sb-admin-2.js"></script>
-
-</body>
+    </body>
 
 </html>
+
 

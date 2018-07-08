@@ -91,5 +91,20 @@ namespace VisitoringCMS.Controllers
         {
             return View();
         }
+        public ActionResult ViewProducts()
+        {
+            ViewBag.Products = db.Product.ToList();
+            return View();
+        }
+        public ActionResult ViewAgents()
+        {
+            ViewBag.Agents = db.agent.ToList();
+            return View();
+        }
+        public ActionResult ViewVisitors()
+        {
+            ViewBag.Visitors = db.Visitor.ToList();
+            return View();
+        }
     }
 }

@@ -2,6 +2,13 @@
 @{
     Layout = null;
 }
+
+<!DOCTYPE html>
+
+
+@{
+    Layout = null;
+}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -70,7 +77,7 @@
                             <!-- /input-group -->
                         </li>
                         <li>
-                            <a class="active" href="/Dashboard/Index"><i class="fa fa-dashboard fa-fw"></i> داشبورد</a>
+                            <a class="" href="/Dashboard/Index"><i class="fa fa-dashboard fa-fw"></i> داشبورد</a>
                         </li>
                         <li>
                             <a class="" href="/Dashboard/CreateProduct"><i class="fa fa-shopping-cart fa-fw"></i> افزودن محصول</a>
@@ -83,7 +90,7 @@
                         </li>
 
                         <li>
-                            <a class="" href="/Dashboard/ViewVisitors"><i class="fa fa-graduation-cap fa-fw"></i> مشاهده ویزیتور ها</a>
+                            <a class="active" href="/Dashboard/ViewVisitors"><i class="fa fa-graduation-cap fa-fw"></i> مشاهده ویزیتور ها</a>
                         </li>
                         <li>
                             <a class=" " href="/Dashboard/CreateAgent"><i class="fa fa-shopping-cart fa-fw"></i> افزودن فروشنده</a>
@@ -91,7 +98,6 @@
                         <li>
                             <a class=" " href="/Dashboard/ViewAgents"><i class="fa fa-shopping-cart fa-fw"></i> مشاهده فروشندگان</a>
                         </li>
-
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->
@@ -100,79 +106,51 @@
         </nav>
 
         <div id="page-wrapper">
-            <div class="row">
-                <div class="col-lg-12">
-                    <h1 class="page-header">داشبورد</h1>
+            <br />
+            <br />
+            <!-- /.col-lg-6 -->
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        لیست ویزیتور ها
+                    </div>
+                    <!-- /.panel-heading -->
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>تصویر ویزیتور</th>
+                                        <th>نام ویزیتور</th>
+                                        <th>نام کاربری</th>
+                                        <th>رمز عبور</th>
+                                        <th>ایمیل</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var p in ViewBag.Visitors)
+                                    {
+                                        <tr>
+                                            <td>#</td>
+                                            <td><img src="@p.Picture" style="width:150px;height:150px"></td>
+                                            <td style="vertical-align:middle">@p.Name</td>
+                                            <td style="vertical-align:middle">@p.Username</td>
+                                            <td style="vertical-align:middle">********</td>
+                                            <td style="vertical-align:middle">@p.Email</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.table-responsive -->
+                    </div>
+                    <!-- /.panel-body -->
                 </div>
-                <!-- /.col-lg-12 -->
+                <!-- /.panel -->
             </div>
-            <!-- /.row -->
-            <div class="row">
-                <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-4">
-                                    <i class="fa fa-comments fa-5x"></i>
-                                </div>
-                                <div class="col-xs-8 text-right">
-                                    <div class="huge">@ViewBag.Visitors</div>
-                                    <div>ویزیتور</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-green">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-4">
-                                    <i class="fa fa-tasks fa-5x"></i>
-                                </div>
-                                <div class="col-xs-8 text-right">
-                                    <div class="huge">@ViewBag.Products</div>
-                                    <div>محصول</div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-yellow">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-4">
-                                    <i class="fa fa-shopping-cart fa-5x"></i>
-                                </div>
-                                <div class="col-xs-8 text-right">
-                                    <div class="huge">@ViewBag.Orders</div>
-                                    <div>سفارش</div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-red">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-4">
-                                    <i class="fa fa-support fa-5x"></i>
-                                </div>
-                                <div class="col-xs-8 text-right">
-                                    <div class="huge">@ViewBag.Agents</div>
-                                    <div>فروشنده</div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-
+            <!-- /.col-lg-6 -->
         </div>
         <!-- /#page-wrapper -->
 
@@ -197,4 +175,5 @@
 </body>
 
 </html>
+
 
