@@ -39,8 +39,7 @@ namespace VisitoringCMS.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
-
-            public ActionResult CreateAgent()
+        public ActionResult CreateAgent()
         {
             return View();
         }
@@ -78,6 +77,15 @@ namespace VisitoringCMS.Controllers
             db.Product.Add(product);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+        public ActionResult Login()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult Login(string user,string pass)
+        {
+            return View();
         }
     }
 }

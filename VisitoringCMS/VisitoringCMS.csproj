@@ -248,6 +248,7 @@
     <Content Include="Views\Dashboard\CreateVisitor.cshtml" />
     <Content Include="Views\Dashboard\CreateAgent.cshtml" />
     <Content Include="Views\Dashboard\CreateProduct.cshtml" />
+    <Content Include="Views\Dashboard\Login.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
