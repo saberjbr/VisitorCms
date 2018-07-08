@@ -88,8 +88,10 @@ namespace VisitoringCMS.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult Login(string user,string pass)
+        public ActionResult Login(string email, string password)
         {
+            if(email=="admin"&&password=="123")
+                return RedirectToAction("Index");
             return View();
         }
         public ActionResult ViewProducts()
